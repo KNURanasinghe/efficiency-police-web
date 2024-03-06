@@ -1,0 +1,81 @@
+/* footer.css */
+
+.footer {
+    background-color: cornflowerblue;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-column {
+    flex: 1;
+}
+
+.footer-column h3 {
+    margin-top: 0;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+    transition: transform 0.3s, font-size 0.3s; /* Add transition for smooth effect */
+}
+
+.footer-column ul li a {
+    color: #fff; /* Set default font color to white */
+    text-decoration: none; /* Remove underline */
+}
+
+.footer-column ul li a:hover {
+    color: #000; /* Change font color to black on hover */
+}
+
+.footer-column ul li:hover {
+    font-size: 18px; /* Increase font size on hover */
+    transform: scale(1.05); /* Scale up slightly when hovered */
+    font-weight: 800;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center; /* Align icons to the center */
+}
+
+.social-icons a {
+    margin: 0 5px; /* Add spacing between icons */
+    color: #fff; /* Set icon color to white */
+    font-size: 20px; /* Adjust icon size */
+    font-weight: 800;
+}
+
+.social-icons a:hover {
+    color: #000; /* Change icon color to black on hover */
+    font-weight: bold;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 10px; /* Adjust as needed */
+    color: #333; /* Change color as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold;
+}
+
+.footer-text::before {
+    content: "© "; /* Add copyright symbol */
+}
+
+.footer-text::after {
+    content: " All rights reserved 2024"; /* Add text */
+}

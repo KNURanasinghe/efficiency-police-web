@@ -1,0 +1,67 @@
+/* styles.css */
+
+header {
+    background-color: cornflowerblue;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: flex-end; /* Align logo to the right */
+    align-items: center; /* Vertically center items */
+  }
+  
+  .title-and-nav-container {
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .title {
+    margin: 0;
+    margin-top: 10px;
+  }
+  
+  .nav {
+    text-align: center; /* Center the navigation links */
+  }
+  
+  .nav ul {
+    list-style-type: none;
+    padding: 0;
+   
+  }
+  
+  .nav ul li {
+    display: inline;
+    margin-right: 30px;
+    transition: transform 0.3s,  font-size 0.3s; 
+  }
+  
+  .nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    
+  }
+  
+  .nav ul li a:hover {
+    text-decoration: underline;
+    color: black;
+    font-size: 18px; 
+   
+  }
+  
+  .logo {
+    width: 150px; /* Adjust as needed */
+    height: auto;
+    margin-top: 10px;
+  }
+  nav ul li:hover {
+    transform: scale(1.05); /* Scale up slightly when hovered */
+  }
+  

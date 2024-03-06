@@ -1,0 +1,19 @@
+
+/* social-media-icons.css */
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-icons a {
+    margin: 0 10px;
+    color: #333; /* Change color as needed */
+    font-size: 24px;
+  }
+  
+  .social-icons a:hover {
+    color: #000; /* Change color as needed */
+  }
+  
