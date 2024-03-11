@@ -1,32 +1,58 @@
-/* HomePage.css */
+/* homePage.css */
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-  }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .container-item {
-    width: 200px; /* Adjust width as needed */
-    height: 150px; /* Adjust height as needed */
-    margin: 10px;
-    background-color: rgba(194, 220, 243, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s, transform 0.3s; /* Add transition for smooth effect */
-    font-weight: 800;
-  }
-  
-  .container-item:hover {
-    background-color: #00ff00; /* Change to green when hovered */
-    transform: scale(1.05); /* Scale up slightly when hovered */
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.photo-container {
+  text-align: center; /* Center the photos */
+}
+
+.photo {
+  width: 200px;
+  height: auto;
+}
+
+.separator {
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+}
+
+.emergency-text {
+  color: red;
+  margin-bottom: 20px;
+ text-align: right;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.container-item {
+  flex: 1;
+  text-align: center;
+}
+
+.container-item h2 {
+  margin-bottom: 10px;
+}
+
+.container-photo {
+  width: 80%;
+  height: auto;
+}
+.small {
+  width: 50px;
+  height: auto;
+  margin-top: 20px;
+}
+.small:hover {
+  transform: scale(1.1); /* Increase size on hover */
+  transition: transform 0.3s ease; /* Add smooth transition */
+}
+
