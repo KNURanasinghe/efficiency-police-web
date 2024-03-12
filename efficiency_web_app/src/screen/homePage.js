@@ -5,6 +5,8 @@ import photo2 from '../assets/2.jpg';
 import photo3 from '../assets/3.jpg';
 import photo4 from '../assets/4.jpg';
 import c from '../assets/c.jpg';
+import e from '../assets/ee.jpg';
+import m from '../assets/m.jpg';
 import fb from '../assets/fb.jpg';
 import ins from '../assets/ins.jpg';
 import x from '../assets/x.jpg';
@@ -79,7 +81,7 @@ function HomePageContent() {
         <div className="container-item">
           <h2>E Services</h2>
           <img
-            src={c}
+            src={e}
             alt="E Services"
             className="container-photo"
           />
@@ -97,7 +99,7 @@ function HomePageContent() {
         <div className="container-item">
           <h2>Media Center</h2>
           <img
-            src={c}
+            src={m}
             alt="Media Center"
             className="container-photo"
           />

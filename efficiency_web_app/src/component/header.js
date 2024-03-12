@@ -1,5 +1,6 @@
 // Header.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import logo from '../assets/logo.png'; // Adjust the path to point to your logo file
 import './header.css'; // Import your CSS file
 
@@ -17,11 +18,26 @@ function Header() {
       </div>
       <nav className="nav">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">The Department</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Media Center</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><Link to="/">Home</Link></li> {/* Use Link component instead of <a> */}
+          <li>
+            <Link to="/department">The Department</Link> {/* Use Link component instead of <a> */}
+            <ul className="dropdown">
+              <li><Link to="/department/mission">Our Mission</Link></li> {/* Use Link component instead of <a> */}
+              <li><Link to="/department/history">Our History</Link></li> {/* Use Link component instead of <a> */}
+              <li><Link to="/department/executive-team">Excecutive Term</Link></li> {/* Use Link component instead of <a> */}
+              <li><Link to="/department/inspector-general">Office Of Inspector Geners</Link></li> {/* Use Link component instead of <a> */}
+            </ul>
+          </li>
+          <li>
+            <Link to="/career">Careers</Link> {/* Use Link component instead of <a> */}
+            <ul className="dropdown">
+              <li><Link to="/career/overview">Overview</Link></li> {/* Use Link component instead of <a> */}
+              <li><Link to="/career/opportunities">Career Opportunities</Link></li> {/* Use Link component instead of <a> */}
+              <li><Link to="/career/eligibility">Eligibility & Hiring</Link></li> {/* Use Link component instead of <a> */}
+            </ul>
+          </li>
+          <li><Link to="/media-center">Media Center</Link></li> {/* Use Link component instead of <a> */}
+          <li><Link to="/contact">Contact Us</Link></li> {/* Use Link component instead of <a> */}
         </ul>
       </nav>
     </header>

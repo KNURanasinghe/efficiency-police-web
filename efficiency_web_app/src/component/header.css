@@ -12,11 +12,16 @@ header {
   display: flex;
   justify-content: center; /* Center items horizontally */
   align-items: center; /* Vertically center items */
-  width: 100%; /* Ensure it spans the entire header width */
+  width: 50%; /* Ensure it spans the entire header width */
 }
 
 .logo-container {
-  margin-right: 10px; /* Add some space between logo and title */
+  margin-right: 5px; /* Add some space between logo and title */
+}
+.logo{
+  height: auto;
+  width: 100px;
+  margin-top: 10px;
 }
 
 .title {
@@ -32,6 +37,7 @@ header {
   background-color: navy;
   margin-left: 5%; /* Move the box 30px to the right */
   margin-top: 10px; /* Adjust as needed */
+  text-align: center;
 }
 
 .nav {
@@ -47,15 +53,18 @@ header {
 }
 
 .nav ul li {
-  display: inline;
+  display: inline-block; /* Change display to inline-block */
   margin-right: 30px;
+  position: relative; /* Set position to relative for dropdowns */
   transition: transform 0.3s, font-size 0.3s;
 }
 
 .nav ul li a {
-  color: #fff; /* Change nav items color to white */
+  color: #1c1c1c; /* Change nav items color to white */
   text-decoration: none;
   font-weight: 800;
+  display: block; /* Display as block for padding and width */
+  padding: 10px; /* Add padding for better click area */
 }
 
 .nav ul li a:hover {
@@ -64,12 +73,33 @@ header {
   font-size: 18px;
 }
 
-.logo {
-  width: 150px; /* Adjust as needed */
-  height: auto;
-  margin-top: 10px;
+.nav ul li:hover {
+  transform: scale(1.05); /* Scale up slightly when hovered */
 }
 
-nav ul li:hover {
-  transform: scale(1.05); /* Scale up slightly when hovered */
+/* Dropdown container */
+.nav ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  opacity: 0.8;
+}
+
+/* Dropdown container visible on hover */
+.nav ul li:hover > ul {
+  display: block;
+  opacity: 1;
+}
+
+/* Dropdown menu items */
+.nav ul ul li {
+  display: block;
+}
+
+/* Style dropdown links on hover */
+.nav ul ul li:hover {
+  background-color: #ddd;
 }

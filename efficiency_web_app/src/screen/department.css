@@ -1,0 +1,45 @@
+.department-page {
+    display: flex;
+  }
+  
+  .left-column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .right-column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .corner-top {
+    background-color: #ccc;
+    padding: 10px;
+  }
+  
+  .department-header {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+  
+  .department-list-container {
+    border: 1px solid #0d0d0d;
+    padding: 10px;
+    width: 250px;
+   margin-left: 400px
+  }
+  
+  .department-list-header {
+    background-color: #ccc;
+    padding: 10px;
+  }
+  
+  .department-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .department-list li {
+    margin-bottom: 10px;
+  }
+  

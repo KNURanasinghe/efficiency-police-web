@@ -1,0 +1,87 @@
+/* careers.css */
+
+.left-column {
+    flex: 0 0 calc(70% - 40px); /* Adjusted width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
+.right-column {
+    flex: 1;
+    padding: 20px;
+}
+
+.corner-top {
+    background-color: #ccc;
+    padding: 10px;
+}
+
+.department-header {
+    margin-top: 40px;
+    font-size: 24px;
+    text-align: center; /* Center the department header */
+}
+
+.department-list-container {
+    border: 1px solid #0d0d0d;
+    padding: 10px;
+    width: 250px;
+    margin-left: 400px;
+}
+
+.department-list-header {
+    background-color: #ccc;
+    padding: 10px;
+}
+
+.department-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.department-list li {
+    margin-bottom: 10px;
+}
+
+/* department.css */
+
+.rtext {
+    text-align: right;
+    font-weight: bold;
+    margin-right: 70px;
+    color: black; /* Set font color to black */
+    text-decoration: none; /* Remove default underline */
+}
+
+.rtext:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #333; /* Change font color on hover */
+}
+
+.rtext:focus {
+    outline: none; /* Remove focus outline */
+}
+
+.additional-row {
+    display: flex;
+    justify-content: center; /* Align content horizontally */
+    align-items: center; /* Align content vertically */
+    height: 100px; /* Adjust the height as needed */
+    background-color: #f0f0f0; /* Example background color */
+    margin-top: 20px; /* Adjust margin top as needed */
+}
+
+.left-column .image-wrapper {
+    margin-top: 40px; /* Add margin-top to create space between the header and image */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+.left-column .container-photo {
+    height: auto;
+    max-width: 80%; /* Ensure image doesn't overflow */
+}

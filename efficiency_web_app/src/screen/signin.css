@@ -1,0 +1,67 @@
+/* SignIn.css */
+
+.sign-in-container {
+    background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity */
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
+  .sign-in-container h1 {
+    text-align: center;
+  }
+  
+  .sign-in-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-column {
+    width: 48%; /* Adjust the width as needed */
+    display: inline-block;
+  }
+  
+  .form-row {
+    margin-top: 20px;
+  }
+  
+  .form-row label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-row input,
+  .form-row select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form-row input[type="file"] {
+    margin-top: 5px;
+  }
+  
+  .form-row button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-row button[type="submit"] {
+    background-color: #28a745; /* Green color for submit button */
+  }
+  
+  .form-row button[type="submit"]:hover,
+  .form-row button[type="button"]:hover {
+    opacity: 0.8;
+  }
+  
+  
