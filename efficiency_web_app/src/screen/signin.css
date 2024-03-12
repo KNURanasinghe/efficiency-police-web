@@ -1,67 +1,86 @@
-/* SignIn.css */
+/* sign-in-page.css */
 
-.sign-in-container {
-    background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity */
-    padding: 20px;
-    border-radius: 10px;
-    width: 600px;
-    margin: 0 auto;
-    margin-top: 50px;
-  }
-  
-  .sign-in-container h1 {
-    text-align: center;
-  }
-  
-  .sign-in-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-column {
-    width: 48%; /* Adjust the width as needed */
-    display: inline-block;
-  }
-  
-  .form-row {
-    margin-top: 20px;
-  }
-  
-  .form-row label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-row input,
-  .form-row select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .form-row input[type="file"] {
-    margin-top: 5px;
-  }
-  
-  .form-row button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .form-row button[type="submit"] {
-    background-color: #28a745; /* Green color for submit button */
-  }
-  
-  .form-row button[type="submit"]:hover,
-  .form-row button[type="button"]:hover {
-    opacity: 0.8;
-  }
-  
-  
+.sign-in-page {
+  background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Space between form and buttons */
+  min-height: 100vh; /* Ensure the page takes up the full viewport height */
+}
+
+.form-row {
+  display: flex;
+  justify-content: center; /* Space between columns */
+  margin-bottom: 10px; /* Add space between rows */
+}
+.form-row1 {
+  display: flex;
+  justify-content: space-between; /* Space between columns */
+  margin-bottom: 10px; /* Add space between rows */
+}
+
+.form-column {
+  flex: 0 0 48%; /* Each column takes up 48% of the width */
+}
+
+label {
+  font-weight: 700; /* Bold text */
+  display: block;
+  margin-bottom: 5px; /* Add space below each label */
+}
+
+input[type='text'],
+input[type='number'],
+input[type='email'],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px; /* Add space below each input/select */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-container {
+  text-align: center; /* Center align the buttons */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px; /* Add space between buttons */
+  margin-top: 15px;
+}
+
+button[type='submit'] {
+  background-color: #28a745; /* Green color for submit button */
+}
+
+button[type='submit']:hover,
+button[type='button']:hover {
+  background-color: #0069d9; /* Darker blue color on hover */
+}
+
+
+.header {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 20px; /* Add space between header and form */
+  margin-left: 40%;
+  background-color: aliceblue;
+  width: 400px;
+}
+
+.logo {
+  width: 90px; /* Adjust the width of the logo */
+  margin-right: 10px; /* Add space between logo and text */
+}
+
+h1 {
+  font-weight: 700; /* Bold text */
+  margin: 0; /* Remove default margin */
+}

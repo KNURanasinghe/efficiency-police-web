@@ -1,8 +1,10 @@
+// SignInPage.js
+
 import React, { useState } from 'react';
 import './signin.css';
+import logo from '../assets/logo.png';
 
-function SignIn() {
-  // State to store form data
+function SignInPage() {
   const [formData, setFormData] = useState({
     permanentAddress: '',
     residentialAddress: '',
@@ -25,81 +27,204 @@ function SignIn() {
     recentPhotograph: null
   });
 
-  // Handler for form input changes
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: type === 'file' ? e.target.files[0] : value
-    }));
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  // Handler for form submission
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData({ ...formData, [name]: files[0] });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add logic for form submission (e.g., sending data to backend)
+    // Add form submission logic here
     console.log(formData);
   };
 
   return (
-    <div className="sign-in-container">
-      <h1>Welcome to SLPD</h1>
-      <h2>Create your profile</h2>
+    <div className="sign-in-page">
+       <div className="header">
+        <img src={logo} alt="Logo" className="logo" />
+      <h2>Welcome to SLPD</h2>
+      </div>
+      <h3>Create your profile</h3>
       <form onSubmit={handleSubmit}>
-        <div className="form-column">
-          <label>Please add a District:</label>
-          <select name="district" value={formData.district} onChange={handleChange}>
-            <option value="">Select District</option>
-            {districts.map((district, index) => (
-              <option key={index} value={district}>{district}</option>
-            ))}
-          </select>
-          {/* Add other form fields for the first column */}
-          {/* For example: */}
-          <label>Permanent Address:</label>
-          <input type="text" name="permanentAddress" value={formData.permanentAddress} onChange={handleChange} />
-          {/* Add more form fields here */}
-        </div>
-        <div className="form-column">
-          {/* Add form fields for the second column */}
-          {/* For example: */}
-          <label>Full Name:</label>
-          <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} />
-          {/* Add more form fields here */}
+        <div className="form-row1">
+          <div className="form-column">
+            <label htmlFor="permanentAddress">Permanent Address:</label>
+            <input
+              type="text"
+              name="permanentAddress"
+              value={formData.permanentAddress}
+              onChange={handleChange}
+            />
+            <label htmlFor="residentialAddress">Residential Address:</label>
+            <input
+              type="text"
+              name="residentialAddress"
+              value={formData.residentialAddress}
+              onChange={handleChange}
+            />
+            <label htmlFor="contactHome">Contact information - Home:</label>
+            <input
+              type="text"
+              name="contactHome"
+              value={formData.contactHome}
+              onChange={handleChange}
+            />
+            <label htmlFor="contactPersonal1">Contact information - Personal 1:</label>
+            <input
+              type="text"
+              name="contactPersonal1"
+              value={formData.contactPersonal1}
+              onChange={handleChange}
+            />
+            <label htmlFor="contactPersonal2">Contact information - Personal 2:</label>
+            <input
+              type="text"
+              name="contactPersonal2"
+              value={formData.contactPersonal2}
+              onChange={handleChange}
+            />
+            <label htmlFor="email">E-Mail Address:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <label htmlFor="district">District:</label>
+            <select
+              name="district"
+              value={formData.district}
+              onChange={handleChange}
+            >
+              <option value="">Please select district</option>
+              <option value="Ampara">Ampara</option>
+              <option value="Anuradhapura">Anuradhapura</option>
+              <option value="Badulla">Badulla</option>
+              <option value="Batticaloa">Batticaloa</option>
+              <option value="Colombo">Colombo</option>
+              <option value="Galle">Galle</option>
+              <option value="Gampaha">Gampaha</option>
+              <option value="Hambantota">Hambantota</option>
+              <option value="Jaffna">Jaffna</option>
+              <option value="Kalutara">Kalutara</option>
+              <option value="Kandy">Kandy</option>
+              <option value="Kegalle">Kegalle</option>
+              <option value="Kilinochchi">Kilinochchi</option>
+              <option value="Kurunegala">Kurunegala</option>
+              <option value="Mannar">Mannar</option>
+              <option value="Matale">Matale</option>
+              <option value="Matara">Matara</option>
+              <option value="Monaragala">Monaragala</option>
+              <option value="Mullaitivu">Mullaitivu</option>
+              <option value="Nuwara Eliya">Nuwara Eliya</option>
+              <option value="Polonnaruwa">Polonnaruwa</option>
+              <option value="Puttalam">Puttalam</option>
+              <option value="Ratnapura">Ratnapura</option>
+              <option value="Trincomalee">Trincomalee</option>
+            </select>
+            <label htmlFor="fullName">Full Name:</label>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+            />
+            <label htmlFor="nameWithInitials">Name with initials:</label>
+            <input
+              type="text"
+              name="nameWithInitials"
+              value={formData.nameWithInitials}
+              onChange={handleChange}
+            />
+            
+          </div>
+          <div className="form-column">
+          <label htmlFor="nic">NIC:</label>
+            <input
+              type="text"
+              name="nic"
+              value={formData.nic}
+              onChange={handleChange}
+            />
+            <label htmlFor="passport">Passport (Optional):</label>
+            <input
+              type="text"
+              name="passport"
+              value={formData.passport}
+              onChange={handleChange}
+            />
+            <label htmlFor="drivingLicense">Driving License (Optional):</label>
+            <input
+              type="text"
+              name="drivingLicense"
+              value={formData.drivingLicense}
+              onChange={handleChange}
+            />
+            <label htmlFor="age">Age:</label>
+            <input
+              type="number"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+            />
+            <label htmlFor="maritalStatus">Marital Status:</label>
+            <select
+              name="maritalStatus"
+              value={formData.maritalStatus}
+              onChange={handleChange}
+            >
+              <option value="">Please select marital status</option>
+              <option value="Married">Married</option>
+              <option value="Unmarried">Unmarried</option>
+            </select>
+            <label htmlFor="policeDomain">Police Domain:</label>
+            <input
+              type="text"
+              name="policeDomain"
+              value={formData.policeDomain}
+              onChange={handleChange}
+            />
+            <label htmlFor="gramasewakaArea">Gramasewaka Area:</label>
+            <input
+              type="text"
+              name="gramasewakaArea"
+              value={formData.gramasewakaArea}
+              onChange={handleChange}
+            />
+            <label htmlFor="scannedNic">Upload your scanned NIC copy:</label>
+            <input
+              type="file"
+              name="scannedNic"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="scannedBirthCertificate">Upload your scanned Birth certificate:</label>
+            <input
+              type="file"
+              name="scannedBirthCertificate"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="recentPhotograph">Upload your recent photograph:</label>
+            <input
+              type="file"
+              name="recentPhotograph"
+              onChange={handleFileChange}
+            />
+          </div>
         </div>
         <div className="form-row">
-          {/* Add form fields spanning both columns */}
-          {/* For example: */}
-          <label>Please add Maritial State:</label>
-          <select name="maritalStatus" value={formData.maritalStatus} onChange={handleChange}>
-            <option value="">Select Marital Status</option>
-            <option value="Married">Married</option>
-            <option value="Unmarried">Unmarried</option>
-          </select>
-          {/* Add more form fields spanning both columns */}
-        </div>
-        <div className="form-row">
-          {/* Add file input fields for uploading documents */}
-          {/* For example: */}
-          <input type="file" name="scannedNic" onChange={handleChange} />
-          <label>Upload your scanned NIC copy:</label>
-          {/* Add more file input fields here */}
-        </div>
-        <div className="form-row">
-          {/* Add buttons for form submission and cancellation */}
-          <button type="submit">Create</button>
-          <button type="button">Cancel</button>
+        <div className="button-container">
+  <button type="submit">Create</button>
+  <button type="button">Cancel</button>
+</div>
         </div>
       </form>
     </div>
   );
 }
 
-// Districts list
-const districts = [
-  'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 'Hambantota',
-  'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Matara',
-  'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee'
-];
-
-export default SignIn;
+export default SignInPage;
