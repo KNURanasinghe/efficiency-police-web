@@ -45,11 +45,13 @@ header {
   text-align: center; /* Center the navigation links */
   background-color: grey;
   width: 100%; /* Change row color to grey */
+  height: 40px;
 }
 
 .nav ul {
   list-style-type: none;
   padding: 0;
+  
 }
 
 .nav ul li {
@@ -57,6 +59,7 @@ header {
   margin-right: 30px;
   position: relative; /* Set position to relative for dropdowns */
   transition: transform 0.3s, font-size 0.3s;
+  margin-top:-10px;
 }
 
 .nav ul li a {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'; 
 import './homePage.css';
 import photo1 from '../assets/1.jpg';
 import photo2 from '../assets/2.jpg';
@@ -15,6 +16,9 @@ import linkd from '../assets/in.jpg';
 function HomePageContent() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
+  
+  const history = useHistory();
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentPhotoIndex((prevIndex) =>
@@ -28,6 +32,9 @@ function HomePageContent() {
   // Function to open URL in new tab
   const openUrlInNewTab = (url) => {
     window.open(url, '_blank');
+  };
+  const goToEServicePage = () => {
+    history.push('/eservice'); // Navigate to '/eservice' path
   };
 
   return (
@@ -78,7 +85,7 @@ function HomePageContent() {
           </div>
         </div>
         {/* E Services */}
-        <div className="container-item">
+        <div className="container-item" onClick={goToEServicePage}>
           <h2>E Services</h2>
           <img
             src={e}

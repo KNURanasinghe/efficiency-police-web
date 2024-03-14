@@ -1,0 +1,85 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+   
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  nav li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  form {
+    margin-top: 10px;
+    margin-bottom: 3%;
+  }
+  
+  form h2 {
+    margin-bottom: 5px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  button[type="submit"],
+  nav button {
+    margin-top: 10px;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 600px) {
+    nav ul {
+      flex-direction: column;
+    }
+  
+    nav li {
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  

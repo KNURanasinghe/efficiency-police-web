@@ -14,7 +14,7 @@ function CareerPage() {
         <div className="department-header">
           Careers
         </div>
-        <div className="image-wrapper"  style={{ marginTop: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="image-wrapper"  style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
   <img
     src={fb}
     alt="URL 2"
