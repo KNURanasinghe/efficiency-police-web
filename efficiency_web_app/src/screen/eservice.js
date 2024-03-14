@@ -55,7 +55,7 @@ function EServicePage() {
             <button onClick={() => setServiceType('online_complaints')}>Online Complaints</button>
           </li>
           <li>
-            <button onClick={() => setServiceType('lost_item_report')}>Lost Item Report</button>
+            <button onClick={() => setServiceType('lost_item_report')}>Lost Mobile</button>
           </li>
         </ul>
       </nav>
