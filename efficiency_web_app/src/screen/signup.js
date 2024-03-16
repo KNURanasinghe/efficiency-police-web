@@ -50,6 +50,7 @@ function SignInPage() {
       <h2>Welcome to SLPD</h2>
       </div>
       <h3>Create your profile</h3>
+      <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div className="form-row1">
           <div className="form-column">
@@ -223,6 +224,7 @@ function SignInPage() {
 </div>
         </div>
       </form>
+      </div>
     </div>
   );
 }

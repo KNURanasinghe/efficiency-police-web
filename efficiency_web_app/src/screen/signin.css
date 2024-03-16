@@ -5,9 +5,19 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Space between form and buttons */
-  min-height: 100vh; /* Ensure the page takes up the full viewport height */
+  justify-content: center; /* Center the content vertically */
+  min-height: 620px; /* Ensure the page takes up the full viewport height */
+  overflow-y: hidden; /* Disable vertical scrolling for the main container */
 }
+
+.form-container {
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 380px; /* Set a fixed height for the form */
+  padding-bottom: 15px;
+}
+
+/* Other styles remain unchanged */
+
 
 .form-row {
   display: flex;
@@ -69,10 +79,12 @@ button[type='button']:hover {
 .header {
   display: flex;
   align-items: center; /* Align items vertically */
-  margin-bottom: 20px; /* Add space between header and form */
+  margin-bottom: 5px; /* Add space between header and form */
   margin-left: 40%;
   background-color: aliceblue;
   width: 400px;
+  margin-top: -7%;
+  
 }
 
 .logo {

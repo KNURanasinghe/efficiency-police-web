@@ -7,6 +7,7 @@ import HomePage from './screen/homePage';
 import DepartmentPage from './screen/department';
 import CareerPage from './screen/career';
 import Eservicres from './screen/eservice';
+import SignUp from './screen/signup';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/department" component={DepartmentPage} />
           <Route path="/career" component={CareerPage} />
           <Route path="/eservice" component={Eservicres} />
+          <Route path="/signup" component={SignUp} />
         </Switch>
         <Footer />
       </div>
