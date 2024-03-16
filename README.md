@@ -47,4 +47,9 @@ We welcome contributions from the community to enhance Efficiency Police Web. If
 
 ## License
 
-Efficiency Police Web is licensed under the [MIT License](LICENSE).
+Efficiency Police Web is licensed under the [Creative Commons Attribution 1.0 License](LICENSE).
+
+This license allows you to share, copy, redistribute, and adapt the work for any purpose, even commercially, under the condition that you give appropriate credit to the original author(s) and indicate if changes were made. 
+
+For more details, please refer to the [full text of the Creative Commons Attribution 1.0 License](https://creativecommons.org/licenses/by/1.0/legalcode).
+
