@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
+import axios from 'axios';
 
 function SignInPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,8 @@ function SignInPage() {
     gramasewakaArea: '',
     scannedNic: null,
     scannedBirthCertificate: null,
-    recentPhotograph: null
+    recentPhotograph: null,
+    password: '' 
   });
 
   const handleChange = (e) => {
@@ -37,10 +39,16 @@ function SignInPage() {
     setFormData({ ...formData, [name]: files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log(formData);
+    try {
+      const response = await axios.post('{{baseURL}}/api/auth/register', formData);
+      console.log('Form submitted successfully:', response.data);
+      // Add any additional logic after successful submission
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle errors here
+    }
   };
 
   return (
@@ -195,6 +203,13 @@ function SignInPage() {
               type="text"
               name="gramasewakaArea"
               value={formData.gramasewakaArea}
+              onChange={handleChange}
+            />
+             <label htmlFor="password">Password:</label>
+            <input
+              type="text"
+              name="password"
+              value={formData.password}
               onChange={handleChange}
             />
             <label htmlFor="scannedNic">Upload your scanned NIC copy:</label>

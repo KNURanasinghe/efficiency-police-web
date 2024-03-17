@@ -22,7 +22,7 @@ function LoginModal({ onClose, onSignup }) {
     event.preventDefault();
     try {
       // Send login request to the server
-      const response = await axios.post('YOUR_LOGIN_ENDPOINT', formData);
+      const response = await axios.post('{{baseURL}}/api/auth/login', formData);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
     } catch (error) {
@@ -83,14 +83,33 @@ function EServicePage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  /*   try {
-      // Submit data based on service type
-      const response = await axios.post('YOUR_API_ENDPOINT_HERE', formData);
+    try {
+      let apiEndpoint = ''; // Placeholder for API endpoint
+      let formData = {}; // Placeholder for form data
+      // Determine API endpoint and form data based on service type
+      switch (serviceType) {
+        case 'police_clearance':
+          apiEndpoint = '{{baseURL}}/api/police-clearance';
+          formData = { /* Add form data for police clearance */ };
+          break;
+        case 'online_complaints':
+          apiEndpoint = '{{baseURL}}/api/online-complaints';
+          formData = { /* Add form data for online complaints */ };
+          break;
+        case 'lost_item_report':
+          apiEndpoint = '{{baseURL}}/api/lost-item-report';
+          formData = { /* Add form data for lost item report */ };
+          break;
+        default:
+          break;
+      }
+      // Send request to the determined API endpoint
+      const response = await axios.post(apiEndpoint, formData);
       console.log('Response from API:', response.data);
       // Optionally, reset the form data after successful submission
     } catch (error) {
       console.error('Error submitting data:', error);
-    } */
+    }
   };
 
   return (
