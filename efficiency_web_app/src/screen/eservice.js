@@ -82,7 +82,11 @@ function EServicePage() {
   };
 
   const handleServiceTypeChange = (type) => {
-    setServiceType(type);
+    if (isLoggedIn) {
+      setServiceType(type);
+    } else {
+      setShowModal(true);
+    }
   };
 
   const handleCloseModal = () => {
@@ -97,6 +101,7 @@ function EServicePage() {
   const handleLogin = () => {
     setIsLoggedIn(true);
     setShowModal(false);
+    setServiceType(''); // Reset serviceType after successful login
   };
 
   const handleSubmit = async (event) => {
@@ -161,7 +166,7 @@ function EServicePage() {
         </ul>
       </nav>
 
-      {!isLoggedIn && showModal && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} onLogin={handleLogin} />}
+      {showModal && !isLoggedIn && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} onLogin={handleLogin} />}
       
       {/* Render forms based on selected service type only if the user is logged in */}
       {isLoggedIn && serviceType === 'police_clearance' && (
