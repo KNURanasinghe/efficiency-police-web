@@ -5,7 +5,6 @@ import './eservice.css';
 
 // Modal component for login
 function LoginModal({ onClose, onSignup, onLogin }) {
-  console.log("first", localStorage.getItem('token' ))
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -27,7 +26,7 @@ function LoginModal({ onClose, onSignup, onLogin }) {
       formData1.append('password', formData.password);
       // Send login request to the server
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
-      localStorage.setItem('token', response.data.access_token); // Set token in localStorage upon successful login
+      localStorage.setItem('access_token', response.data.access_token); // Set access_token in localStorage upon successful login
       onLogin(); // Call onLogin callback to indicate successful login
     } catch (error) {
       console.error('Login Error:', error);
@@ -71,7 +70,7 @@ function EServicePage() {
   });
 
   useEffect(() => {
-    setIsLoggedIn(localStorage.getItem('token') !== null);
+    setIsLoggedIn(localStorage.getItem('access_token') !== null);
   }, []);
 
   const handleInputChange = (event) => {
@@ -135,7 +134,7 @@ function EServicePage() {
       // Send request to the determined API endpoint
       const response = await axios.post(apiEndpoint, formDataToSend, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // Include token in the request headers
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}` // Include access_token in the request headers
         }
       });
       console.log('Response from API:', response.data);
