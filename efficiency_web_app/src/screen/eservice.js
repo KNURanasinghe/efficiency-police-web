@@ -125,7 +125,7 @@ function EServicePage() {
           formData.append('complaint', formData.description);
           break;
         case 'lost_item_report':
-          apiEndpoint = 'http://127.0.0.1:8000/api/lost-item-report';
+          apiEndpoint = 'http://127.0.0.1:8000/api/civilian/lost-item-report';
           formData.append('name', formData.fullName);
           formData.append('division', formData.policeDivision);
           formData.append('district', formData.district);
