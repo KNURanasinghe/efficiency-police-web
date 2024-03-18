@@ -13,8 +13,6 @@ function LoginModal({ onClose, onSignup }) {
     password: ''
   });
 
-  const history = useHistory();
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -33,12 +31,6 @@ function LoginModal({ onClose, onSignup }) {
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
-
-      // Check if token is not empty
-      if (token) {
-        // Redirect to the appropriate form based on the selected service type
-        history.push(`/${serviceType}`); // Redirect to the appropriate form route
-      }
     } catch (error) {
       console.error('Login Error:', error);
       // Handle login error, e.g., display error message
@@ -76,7 +68,9 @@ function EServicePage() {
     policeDivision: '',
     district: '',
     itemName: '', // Only for lost_item_report
-    description: ''
+    description: '',
+    username: '',
+    password: ''
   });
 
   const handleInputChange = (event) => {
@@ -88,16 +82,16 @@ function EServicePage() {
   };
 
   const handleServiceTypeChange = (type) => {
-    setServiceType(type);
-    if (!isLoggedIn()) {
+    if (isLoggedIn()) {
+      setServiceType(type);
+    } else {
       setShowModal(true);
     }
   };
 
   const isLoggedIn = () => {
-    // Implement your logic to check if the user is logged in
-    // For example, check if there's a token in localStorage
-    return localStorage.getItem('token') !== null; // Placeholder logic
+    // Check if the user is logged in by verifying the token
+    return localStorage.getItem('token') !== null;
   };
 
   const handleCloseModal = () => {
@@ -144,7 +138,7 @@ function EServicePage() {
       // Send request to the determined API endpoint
       const response = await axios.post(apiEndpoint, formData, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // Include token in the request headers
         }
       });
       console.log('Response from API:', response.data);
@@ -173,8 +167,8 @@ function EServicePage() {
 
       {showModal && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} />}
       
-      {/* Render forms based on selected service type */}
-      {serviceType === 'police_clearance' && (
+      {/* Render forms based on selected service type only if the user is logged in */}
+      {isLoggedIn() && serviceType === 'police_clearance' && (
         <form onSubmit={handleSubmit}>
           <h2>Police Clearance Request</h2>
           <label>
@@ -200,7 +194,7 @@ function EServicePage() {
           <button type="submit">Submit</button>
         </form>
       )}
-      {serviceType === 'online_complaints' && (
+      {isLoggedIn() && serviceType === 'online_complaints' && (
         <form onSubmit={handleSubmit}>
           <h2>Online Complaints</h2>
           <label>
@@ -226,7 +220,7 @@ function EServicePage() {
           <button type="submit">Submit</button>
         </form>
       )}
-      {serviceType === 'lost_item_report' && (
+      {isLoggedIn() && serviceType === 'lost_item_report' && (
         <form onSubmit={handleSubmit}>
           <h2>Lost Item Report</h2>
           <label>
