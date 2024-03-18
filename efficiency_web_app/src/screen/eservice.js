@@ -27,8 +27,8 @@ function LoginModal({ onClose, onSignup }) {
       // Send login request to the server
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
+      localStorage.setItem('token', response.data.access_token); // Set token in localStorage upon successful login
       onClose(); // Close the modal upon successful login
-      localStorage.setItem('token', response.data.access_token); // Store the token in local storage
     } catch (error) {
       console.error('Login Error:', error);
       // Handle login error, e.g., display error message
@@ -66,7 +66,9 @@ function EServicePage() {
     policeDivision: '',
     district: '',
     itemName: '', // Only for lost_item_report
-    description: ''
+    description: '',
+    username: '',
+    password: ''
   });
 
   const handleInputChange = (event) => {
@@ -103,36 +105,36 @@ function EServicePage() {
     event.preventDefault();
     try {
       let apiEndpoint = ''; // Placeholder for API endpoint
-      const formData1 = new FormData(); // Placeholder for form data
+      const formData = new FormData(); // Placeholder for form data
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/request-clearance';
-          formData1.append('name', formData.fullName);
-          formData1.append('division', formData.policeDivision);
-          formData1.append('district', formData.district);
-          formData1.append('description', formData.description);
+          formData.append('name', formData.fullName);
+          formData.append('division', formData.policeDivision);
+          formData.append('district', formData.district);
+          formData.append('description', formData.description);
           break;
         case 'online_complaints':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/complaint';
-          formData1.append('name', formData.fullName);
-          formData1.append('division', formData.policeDivision);
-          formData1.append('district', formData.district);
-          formData1.append('complaint', formData.description);
+          formData.append('name', formData.fullName);
+          formData.append('division', formData.policeDivision);
+          formData.append('district', formData.district);
+          formData.append('complaint', formData.description);
           break;
         case 'lost_item_report':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/lost-item-report';
-          formData1.append('name', formData.fullName);
-          formData1.append('division', formData.policeDivision);
-          formData1.append('district', formData.district);
-          formData1.append('item', formData.itemName); // Assuming itemName should be used here
-          formData1.append('description', formData.description);
+          formData.append('name', formData.fullName);
+          formData.append('division', formData.policeDivision);
+          formData.append('district', formData.district);
+          formData.append('item', formData.itemName); // Assuming itemName should be used here
+          formData.append('description', formData.description);
           break;
         default:
           break;
       }
       // Send request to the determined API endpoint
-      const response = await axios.post(apiEndpoint, formData1, {
+      const response = await axios.post(apiEndpoint, formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include token in the request headers
         }
@@ -164,92 +166,88 @@ function EServicePage() {
       {showModal && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} />}
       
       {/* Render forms based on selected service type only if the user is logged in */}
-      {isLoggedIn() && (
-        <>
-          {serviceType === 'police_clearance' && (
-            <form onSubmit={handleSubmit}>
-              <h2>Police Clearance Request</h2>
-              <label>
-                Full Name:
-                <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Police Division:
-                <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                District:
-                <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Description:
-                <textarea name="description" value={formData.description} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <button type="submit">Submit</button>
-            </form>
-          )}
-          {serviceType === 'online_complaints' && (
-            <form onSubmit={handleSubmit}>
-              <h2>Online Complaints</h2>
-              <label>
-                Full Name:
-                <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Police Division:
-                <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                District:
-                <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Description:
-                <textarea name="description" value={formData.description} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <button type="submit">Submit</button>
-            </form>
-          )}
-          {serviceType === 'lost_item_report' && (
-            <form onSubmit={handleSubmit}>
-              <h2>Lost Item Report</h2>
-              <label>
-                Full Name:
-                <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Police Division:
-                <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                District:
-                <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Item Name:
-                <input type="text" name="itemName" value={formData.itemName} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <label>
-                Description:
-                <textarea name="description" value={formData.description} onChange={handleInputChange} required />
-              </label>
-              <br />
-              <button type="submit">Submit</button>
-            </form>
-          )}
-        </>
+      {isLoggedIn() && serviceType === 'police_clearance' && (
+        <form onSubmit={handleSubmit}>
+          <h2>Police Clearance Request</h2>
+          <label>
+            Full Name:
+            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Police Division:
+            <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            District:
+            <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea name="description" value={formData.description} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      )}
+      {isLoggedIn() && serviceType === 'online_complaints' && (
+        <form onSubmit={handleSubmit}>
+          <h2>Online Complaints</h2>
+          <label>
+            Full Name:
+            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Police Division:
+            <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            District:
+            <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea name="description" value={formData.description} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      )}
+      {isLoggedIn() && serviceType === 'lost_item_report' && (
+        <form onSubmit={handleSubmit}>
+          <h2>Lost Item Report</h2>
+          <label>
+            Full Name:
+            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Police Division:
+            <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            District:
+            <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Item Name:
+            <input type="text" name="itemName" value={formData.itemName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea name="description" value={formData.description} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
       )}
     </div>
   );
