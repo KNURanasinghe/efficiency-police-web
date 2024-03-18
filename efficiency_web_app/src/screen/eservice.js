@@ -25,8 +25,8 @@ function LoginModal({ onClose, onSignup }) {
     event.preventDefault();
     try {
       const formData1 = new FormData();
-      formData1.append('username', formData1.username);
-      formData1.append('password', formData1.password);
+      formData1.append('username', formData.username);
+      formData1.append('password', formData.password);
       // Send login request to the server
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
