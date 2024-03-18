@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 
 // Modal component for login
 function LoginModal({ onClose, onSignup }) {
+  //token that given from backend
+  localStorage.setItem('token', 'access_token');
+  const token = localStorage.getItem('token');
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -22,7 +25,7 @@ function LoginModal({ onClose, onSignup }) {
     event.preventDefault();
     try {
       // Send login request to the server
-      const response = await axios.post('{{baseURL}}/api/auth/login', formData);
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData,);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
     } catch (error) {
@@ -57,7 +60,15 @@ function EServicePage() {
   const [serviceType, setServiceType] = useState('');
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
-
+  const [formData, setFormData] = useState({
+    fullName: '',
+    policeDivision: '',
+    district: '',
+    itemName: '', // Only for lost_item_report
+    description: '',
+    username: '',
+    password: ''
+  });
   const handleServiceTypeChange = (type) => {
     if (isLoggedIn()) {
       setServiceType(type);
@@ -89,22 +100,25 @@ function EServicePage() {
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
-          apiEndpoint = '{{baseURL}}/api/police-clearance';
+          apiEndpoint = 'http://127.0.0.1:8000/api/police-clearance';
           formData = { /* Add form data for police clearance */ };
           break;
         case 'online_complaints':
-          apiEndpoint = '{{baseURL}}/api/online-complaints';
-          formData = { /* Add form data for online complaints */ };
+          apiEndpoint = 'http://127.0.0.1:8000/api/online-complaints';
+          formData = {  };
           break;
         case 'lost_item_report':
-          apiEndpoint = '{{baseURL}}/api/lost-item-report';
+          apiEndpoint = 'http://127.0.0.1:8000/api/lost-item-report';
           formData = { /* Add form data for lost item report */ };
           break;
         default:
           break;
       }
       // Send request to the determined API endpoint
-      const response = await axios.post(apiEndpoint, formData);
+      const response = await axios.post(apiEndpoint, formData, {
+        headers: {
+          'Authorization': 'Bearer ${token}'
+        }});
       console.log('Response from API:', response.data);
       // Optionally, reset the form data after successful submission
     } catch (error) {
@@ -135,21 +149,83 @@ function EServicePage() {
       {serviceType === 'police_clearance' && (
         <form onSubmit={handleSubmit}>
           <h2>Police Clearance Request</h2>
-          {/* Add input fields for police clearance */}
+          <label>
+            Full Name:
+            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Police Division:
+            <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            District:
+            <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea name="description" value={formData.description} onChange={handleInputChange} required />
+          </label>
+          <br />
           <button type="submit">Submit</button>
         </form>
       )}
       {serviceType === 'online_complaints' && (
         <form onSubmit={handleSubmit}>
           <h2>Online Complaints</h2>
-          {/* Add input fields for online complaints */}
+          <label>
+            Full Name:
+            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Police Division:
+            <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            District:
+            <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea name="description" value={formData.description} onChange={handleInputChange} required />
+          </label>
+          <br />
           <button type="submit">Submit</button>
         </form>
       )}
       {serviceType === 'lost_item_report' && (
         <form onSubmit={handleSubmit}>
           <h2>Lost Item Report</h2>
-          {/* Add input fields for lost item report */}
+          <label>
+            Full Name:
+            <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Police Division:
+            <input type="text" name="policeDivision" value={formData.policeDivision} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            District:
+            <input type="text" name="district" value={formData.district} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Item Name:
+            <input type="text" name="itemName" value={formData.itemName} onChange={handleInputChange} required />
+          </label>
+          <br />
+          <label>
+            Description:
+            <textarea name="description" value={formData.description} onChange={handleInputChange} required />
+          </label>
+          <br />
           <button type="submit">Submit</button>
         </form>
       )}

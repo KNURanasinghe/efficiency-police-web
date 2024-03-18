@@ -2,6 +2,7 @@ import React from 'react';
 import './department.css';
 
 function DepartmentPage() {
+  
   return (
     <div className="department-page">
       <div className="left-column">

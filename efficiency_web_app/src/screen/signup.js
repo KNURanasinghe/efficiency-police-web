@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 import axios from 'axios';
 
 function SignInPage() {
+ 
   const [formData, setFormData] = useState({
     permanentAddress: '',
     residentialAddress: '',
@@ -42,7 +43,7 @@ function SignInPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('{{baseURL}}/api/auth/register', formData);
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/register', formData);
       console.log('Form submitted successfully:', response.data);
       // Add any additional logic after successful submission
     } catch (error) {
