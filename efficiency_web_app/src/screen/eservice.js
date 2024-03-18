@@ -13,6 +13,8 @@ function LoginModal({ onClose, onSignup }) {
     password: ''
   });
 
+  const history = useHistory();
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -31,6 +33,12 @@ function LoginModal({ onClose, onSignup }) {
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
+
+      // Check if token is not empty
+      if (token) {
+        // Redirect to the appropriate form based on the selected service type
+        history.push(`/${serviceType}`); // Redirect to the appropriate form route
+      }
     } catch (error) {
       console.error('Login Error:', error);
       // Handle login error, e.g., display error message
@@ -68,9 +76,7 @@ function EServicePage() {
     policeDivision: '',
     district: '',
     itemName: '', // Only for lost_item_report
-    description: '',
-    username: '',
-    password: ''
+    description: ''
   });
 
   const handleInputChange = (event) => {
@@ -82,9 +88,8 @@ function EServicePage() {
   };
 
   const handleServiceTypeChange = (type) => {
-    if (isLoggedIn()) {
-      setServiceType(type);
-    } else {
+    setServiceType(type);
+    if (!isLoggedIn()) {
       setShowModal(true);
     }
   };
@@ -92,7 +97,7 @@ function EServicePage() {
   const isLoggedIn = () => {
     // Implement your logic to check if the user is logged in
     // For example, check if there's a token in localStorage
-    return false; // Placeholder logic
+    return localStorage.getItem('token') !== null; // Placeholder logic
   };
 
   const handleCloseModal = () => {
@@ -108,34 +113,30 @@ function EServicePage() {
     event.preventDefault();
     try {
       let apiEndpoint = ''; // Placeholder for API endpoint
-      const formData = new FormData();// Placeholder for form data
+      const formData = new FormData(); // Placeholder for form data
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
           apiEndpoint = 'http://127.0.0.1:8000/api/police-clearance';
-          formData = 
-            formData.append('name', formData.fullName);
-            formData.append('division', formData.policeDivision);
-            formData.append('district', formData.district);
-            formData.append('description', formData.description);
-           
+          formData.append('name', formData.fullName);
+          formData.append('division', formData.policeDivision);
+          formData.append('district', formData.district);
+          formData.append('description', formData.description);
           break;
         case 'online_complaints':
           apiEndpoint = 'http://127.0.0.1:8000/api/online-complaints';
-          formData =   
-           formData.append('name', formData.fullName);
+          formData.append('name', formData.fullName);
           formData.append('division', formData.policeDivision);
           formData.append('district', formData.district);
           formData.append('complaint', formData.description);
           break;
         case 'lost_item_report':
           apiEndpoint = 'http://127.0.0.1:8000/api/lost-item-report';
-          formData = 
           formData.append('name', formData.fullName);
-        formData.append('division', formData.policeDivision);
-        formData.append('district', formData.district);
-        formData.append('item', formData.itemName); // Assuming itemName should be used here
-        formData.append('description', formData.description);
+          formData.append('division', formData.policeDivision);
+          formData.append('district', formData.district);
+          formData.append('item', formData.itemName); // Assuming itemName should be used here
+          formData.append('description', formData.description);
           break;
         default:
           break;
@@ -143,7 +144,7 @@ function EServicePage() {
       // Send request to the determined API endpoint
       const response = await axios.post(apiEndpoint, formData, {
         headers: {
-          'Authorization': 'Bearer ${token}'
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
       console.log('Response from API:', response.data);
