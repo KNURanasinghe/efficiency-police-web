@@ -28,7 +28,7 @@ function LoginModal({ onClose, onSignup }) {
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
-      localStorage.setItem('token', 'access_token');
+      localStorage.setItem('token', response.data.access_token); // Store the token in local storage
     } catch (error) {
       console.error('Login Error:', error);
       // Handle login error, e.g., display error message
