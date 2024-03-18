@@ -111,14 +111,14 @@ function EServicePage() {
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
-          apiEndpoint = 'http://127.0.0.1:8000/api/police-clearance';
+          apiEndpoint = 'http://127.0.0.1:8000/api/civilian/request-clearance';
           formData.append('name', formData.fullName);
           formData.append('division', formData.policeDivision);
           formData.append('district', formData.district);
           formData.append('description', formData.description);
           break;
         case 'online_complaints':
-          apiEndpoint = 'http://127.0.0.1:8000/api/online-complaints';
+          apiEndpoint = 'http://127.0.0.1:8000/api/civilian/complaint';
           formData.append('name', formData.fullName);
           formData.append('division', formData.policeDivision);
           formData.append('district', formData.district);
