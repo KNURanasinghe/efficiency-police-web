@@ -24,8 +24,11 @@ function LoginModal({ onClose, onSignup }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const formData1 = new FormData();
+      formData1.append('username', formData1.username);
+      formData1.append('password', formData1.password);
       // Send login request to the server
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData);
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
     } catch (error) {
@@ -105,7 +108,7 @@ function EServicePage() {
     event.preventDefault();
     try {
       let apiEndpoint = ''; // Placeholder for API endpoint
-      let formData = {}; // Placeholder for form data
+      const formData = new FormData();// Placeholder for form data
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
