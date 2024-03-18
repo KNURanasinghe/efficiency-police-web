@@ -1,10 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './eservice.css';
 
 // Modal component for login
-function LoginModal({ onClose, onSignup }) {
+function LoginModal({ onClose, onSignup, onLogin }) {
   console.log("first", localStorage.getItem('token' ))
   const [formData, setFormData] = useState({
     username: '',
@@ -27,17 +27,13 @@ function LoginModal({ onClose, onSignup }) {
       formData1.append('password', formData.password);
       // Send login request to the server
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
-      console.log('Login Response:', response.data);
-
-
       localStorage.setItem('token', response.data.access_token); // Set token in localStorage upon successful login
-      onClose(); // Close the modal upon successful login
+      onLogin(); // Call onLogin callback to indicate successful login
     } catch (error) {
       console.error('Login Error:', error);
       // Handle login error, e.g., display error message
     }
   };
-
 
   return (
     <div className="modal">
@@ -64,16 +60,19 @@ function LoginModal({ onClose, onSignup }) {
 function EServicePage() {
   const [serviceType, setServiceType] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useHistory();
   const [formData, setFormData] = useState({
     fullName: '',
     policeDivision: '',
     district: '',
     itemName: '', // Only for lost_item_report
-    description: '',
-    username: '',
-    password: ''
+    description: ''
   });
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('token') !== null);
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -84,16 +83,7 @@ function EServicePage() {
   };
 
   const handleServiceTypeChange = (type) => {
-    if (!isLoggedIn()) {
-      setShowModal(false);
-    } else {
-      setServiceType(type);
-    }
-  };
-
-  const isLoggedIn = () => {
-    // Check if the user is logged in by verifying the token
-    return localStorage.getItem('token') !== null;
+    setServiceType(type);
   };
 
   const handleCloseModal = () => {
@@ -105,40 +95,45 @@ function EServicePage() {
     history.push('/signup'); // Navigate to signup page
   };
 
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    setShowModal(false);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       let apiEndpoint = ''; // Placeholder for API endpoint
-      const formData = new FormData(); // Placeholder for form data
+      const formDataToSend = new FormData(); // Placeholder for form data
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/request-clearance';
-          formData.append('name', formData.fullName);
-          formData.append('division', formData.policeDivision);
-          formData.append('district', formData.district);
-          formData.append('description', formData.description);
+          formDataToSend.append('name', formData.fullName);
+          formDataToSend.append('division', formData.policeDivision);
+          formDataToSend.append('district', formData.district);
+          formDataToSend.append('description', formData.description);
           break;
         case 'online_complaints':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/complaint';
-          formData.append('name', formData.fullName);
-          formData.append('division', formData.policeDivision);
-          formData.append('district', formData.district);
-          formData.append('complaint', formData.description);
+          formDataToSend.append('name', formData.fullName);
+          formDataToSend.append('division', formData.policeDivision);
+          formDataToSend.append('district', formData.district);
+          formDataToSend.append('complaint', formData.description);
           break;
         case 'lost_item_report':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/lost-item-report';
-          formData.append('name', formData.fullName);
-          formData.append('division', formData.policeDivision);
-          formData.append('district', formData.district);
-          formData.append('item', formData.itemName); // Assuming itemName should be used here
-          formData.append('description', formData.description);
+          formDataToSend.append('name', formData.fullName);
+          formDataToSend.append('division', formData.policeDivision);
+          formDataToSend.append('district', formData.district);
+          formDataToSend.append('item', formData.itemName); // Assuming itemName should be used here
+          formDataToSend.append('description', formData.description);
           break;
         default:
           break;
       }
       // Send request to the determined API endpoint
-      const response = await axios.post(apiEndpoint, formData, {
+      const response = await axios.post(apiEndpoint, formDataToSend, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include token in the request headers
         }
@@ -167,10 +162,10 @@ function EServicePage() {
         </ul>
       </nav>
 
-      {showModal && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} />}
+      {!isLoggedIn && showModal && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} onLogin={handleLogin} />}
       
       {/* Render forms based on selected service type only if the user is logged in */}
-      {isLoggedIn() && serviceType === 'police_clearance' && (
+      {isLoggedIn && serviceType === 'police_clearance' && (
         <form onSubmit={handleSubmit}>
           <h2>Police Clearance Request</h2>
           <label>
@@ -196,7 +191,7 @@ function EServicePage() {
           <button type="submit">Submit</button>
         </form>
       )}
-      {isLoggedIn() && serviceType === 'online_complaints' && (
+      {isLoggedIn && serviceType === 'online_complaints' && (
         <form onSubmit={handleSubmit}>
           <h2>Online Complaints</h2>
           <label>
@@ -222,7 +217,7 @@ function EServicePage() {
           <button type="submit">Submit</button>
         </form>
       )}
-      {isLoggedIn() && serviceType === 'lost_item_report' && (
+      {isLoggedIn && serviceType === 'lost_item_report' && (
         <form onSubmit={handleSubmit}>
           <h2>Lost Item Report</h2>
           <label>
