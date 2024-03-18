@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './eservice.css';
 
@@ -223,7 +223,7 @@ function EServicePage() {
       )}
       {isLoggedIn && serviceType === 'lost_item_report' && (
         <form onSubmit={handleSubmit}>
-          <h2>Lost Item Report</h2>
+          <h2>Lost Mobile Report</h2>
           <label>
             Full Name:
             <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
