@@ -66,9 +66,7 @@ function EServicePage() {
     policeDivision: '',
     district: '',
     itemName: '', // Only for lost_item_report
-    description: '',
-    username: '',
-    password: ''
+    description: ''
   });
 
   const handleInputChange = (event) => {
@@ -105,36 +103,36 @@ function EServicePage() {
     event.preventDefault();
     try {
       let apiEndpoint = ''; // Placeholder for API endpoint
-      const formData = new FormData(); // Placeholder for form data
+      const formData1 = new FormData(); // Placeholder for form data
       // Determine API endpoint and form data based on service type
       switch (serviceType) {
         case 'police_clearance':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/request-clearance';
-          formData.append('name', formData.fullName);
-          formData.append('division', formData.policeDivision);
-          formData.append('district', formData.district);
-          formData.append('description', formData.description);
+          formData1.append('name', formData.fullName);
+          formData1.append('division', formData.policeDivision);
+          formData1.append('district', formData.district);
+          formData1.append('description', formData.description);
           break;
         case 'online_complaints':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/complaint';
-          formData.append('name', formData.fullName);
-          formData.append('division', formData.policeDivision);
-          formData.append('district', formData.district);
-          formData.append('complaint', formData.description);
+          formData1.append('name', formData.fullName);
+          formData1.append('division', formData.policeDivision);
+          formData1.append('district', formData.district);
+          formData1.append('complaint', formData.description);
           break;
         case 'lost_item_report':
           apiEndpoint = 'http://127.0.0.1:8000/api/civilian/lost-item-report';
-          formData.append('name', formData.fullName);
-          formData.append('division', formData.policeDivision);
-          formData.append('district', formData.district);
-          formData.append('item', formData.itemName); // Assuming itemName should be used here
-          formData.append('description', formData.description);
+          formData1.append('name', formData.fullName);
+          formData1.append('division', formData.policeDivision);
+          formData1.append('district', formData.district);
+          formData1.append('item', formData.itemName); // Assuming itemName should be used here
+          formData1.append('description', formData.description);
           break;
         default:
           break;
       }
       // Send request to the determined API endpoint
-      const response = await axios.post(apiEndpoint, formData, {
+      const response = await axios.post(apiEndpoint, formData1, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // Include token in the request headers
         }
@@ -166,7 +164,7 @@ function EServicePage() {
       {showModal && <LoginModal onClose={handleCloseModal} onSignup={handleSignup} />}
       
       {/* Render forms based on selected service type only if the user is logged in */}
-      {isLoggedIn() ? (
+      {isLoggedIn() && (
         <>
           {serviceType === 'police_clearance' && (
             <form onSubmit={handleSubmit}>
@@ -252,7 +250,7 @@ function EServicePage() {
             </form>
           )}
         </>
-      ) : null}
+      )}
     </div>
   );
 }
