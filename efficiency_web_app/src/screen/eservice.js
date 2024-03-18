@@ -5,6 +5,7 @@ import './eservice.css';
 
 // Modal component for login
 function LoginModal({ onClose, onSignup }) {
+  console.log("first", localStorage.getItem('token' ))
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -27,6 +28,8 @@ function LoginModal({ onClose, onSignup }) {
       // Send login request to the server
       const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1);
       console.log('Login Response:', response.data);
+
+
       localStorage.setItem('token', response.data.access_token); // Set token in localStorage upon successful login
       onClose(); // Close the modal upon successful login
     } catch (error) {
@@ -34,6 +37,7 @@ function LoginModal({ onClose, onSignup }) {
       // Handle login error, e.g., display error message
     }
   };
+
 
   return (
     <div className="modal">
