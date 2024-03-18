@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 // Modal component for login
 function LoginModal({ onClose, onSignup }) {
-  //token that given from backend
+  // Token that is given from the backend
   localStorage.setItem('token', 'access_token');
   const token = localStorage.getItem('token');
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ function LoginModal({ onClose, onSignup }) {
     event.preventDefault();
     try {
       // Send login request to the server
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData,);
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData);
       console.log('Login Response:', response.data);
       onClose(); // Close the modal upon successful login
     } catch (error) {
@@ -69,6 +69,15 @@ function EServicePage() {
     username: '',
     password: ''
   });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const handleServiceTypeChange = (type) => {
     if (isLoggedIn()) {
       setServiceType(type);
@@ -101,15 +110,31 @@ function EServicePage() {
       switch (serviceType) {
         case 'police_clearance':
           apiEndpoint = 'http://127.0.0.1:8000/api/police-clearance';
-          formData = { /* Add form data for police clearance */ };
+          formData = { 
+            name: formData.fullName,
+            division: formData.policeDivision,
+            district: formData.district,
+            description: formData.description
+           };
           break;
         case 'online_complaints':
           apiEndpoint = 'http://127.0.0.1:8000/api/online-complaints';
-          formData = {  };
+          formData = { 
+            name: formData.fullName,
+            division: formData.policeDivision,
+            district: formData.district,
+            complaint: formData.description
+           };
           break;
         case 'lost_item_report':
           apiEndpoint = 'http://127.0.0.1:8000/api/lost-item-report';
-          formData = { /* Add form data for lost item report */ };
+          formData = { 
+            name: formData.fullName,
+            division: formData.policeDivision,
+            district: formData.district,
+            item: formData.description,
+            description: formData.description
+           };
           break;
         default:
           break;
@@ -118,7 +143,8 @@ function EServicePage() {
       const response = await axios.post(apiEndpoint, formData, {
         headers: {
           'Authorization': 'Bearer ${token}'
-        }});
+        }
+      });
       console.log('Response from API:', response.data);
       // Optionally, reset the form data after successful submission
     } catch (error) {
