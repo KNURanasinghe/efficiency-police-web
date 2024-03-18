@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './eservice.css';
 import axios from 'axios';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './eservice.css';
 
 // Modal component for login
 function LoginModal({ onClose, onSignup }) {
@@ -110,31 +110,29 @@ function EServicePage() {
       switch (serviceType) {
         case 'police_clearance':
           apiEndpoint = 'http://127.0.0.1:8000/api/police-clearance';
-          formData = { 
-            name: formData.fullName,
-            division: formData.policeDivision,
-            district: formData.district,
-            description: formData.description
-           };
+          formData = 
+            formData.append('name', formData.fullName);
+            formData.append('division', formData.policeDivision);
+            formData.append('district', formData.district);
+            formData.append('description', formData.description);
+           
           break;
         case 'online_complaints':
           apiEndpoint = 'http://127.0.0.1:8000/api/online-complaints';
-          formData = { 
-            name: formData.fullName,
-            division: formData.policeDivision,
-            district: formData.district,
-            complaint: formData.description
-           };
+          formData =   
+           formData.append('name', formData.fullName);
+          formData.append('division', formData.policeDivision);
+          formData.append('district', formData.district);
+          formData.append('complaint', formData.description);
           break;
         case 'lost_item_report':
           apiEndpoint = 'http://127.0.0.1:8000/api/lost-item-report';
-          formData = { 
-            name: formData.fullName,
-            division: formData.policeDivision,
-            district: formData.district,
-            item: formData.description,
-            description: formData.description
-           };
+          formData = 
+          formData.append('name', formData.fullName);
+        formData.append('division', formData.policeDivision);
+        formData.append('district', formData.district);
+        formData.append('item', formData.itemName); // Assuming itemName should be used here
+        formData.append('description', formData.description);
           break;
         default:
           break;
