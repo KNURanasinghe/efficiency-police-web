@@ -81,7 +81,7 @@ function EServicePage() {
 
   const handleServiceTypeChange = (type) => {
     if (!isLoggedIn()) {
-      setShowModal(true);
+      setShowModal(false);
     } else {
       setServiceType(type);
     }
