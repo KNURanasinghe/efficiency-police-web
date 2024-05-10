@@ -1,15 +1,19 @@
-/* homePage.css */
+.mcontainer{
+  display: flex;
+  
+}
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  max-height: calc(100vh - (206px + 200px)); /* Set maximum height */
-  overflow-y: auto; /* Enable vertical scrolling */
+  flex: 1;
+ height: 1000px;
+
+ 
 }
 
 
 .photo-container {
   text-align: center; /* Center the photos */
+  display: block;
+  height: 500px;
 }
 
 .photo {

@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'; 
-import './homePage.css';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import photo1 from '../assets/1.jpg';
 import photo2 from '../assets/2.jpg';
 import photo3 from '../assets/3.jpg';
 import photo4 from '../assets/4.jpg';
 import c from '../assets/c.jpg';
 import e from '../assets/ee.jpg';
-import m from '../assets/m.jpg';
 import fb from '../assets/fb.jpg';
-import ins from '../assets/ins.jpg';
-import x from '../assets/x.jpg';
 import linkd from '../assets/in.jpg';
+import ins from '../assets/ins.jpg';
+import m from '../assets/m.jpg';
+import x from '../assets/x.jpg';
+import './homePage.css';
+
 
 function HomePageContent() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -38,7 +39,10 @@ function HomePageContent() {
   };
 
   return (
+    <div className='mcontainer'>
+      
     <div className="container">
+    
       {/* Photos */}
       <div className="photo-container">
         <img
@@ -112,7 +116,11 @@ function HomePageContent() {
           />
         </div>
       </div>
+      
     </div>
+   
+    </div>
+    
   );
 }
 

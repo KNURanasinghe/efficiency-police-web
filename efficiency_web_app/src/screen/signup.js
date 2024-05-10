@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import './signin.css';
 import logo from '../assets/logo.png';
 import axios from 'axios';
+import Footer from '../component/footer';
 
 function SignInPage() {
  
@@ -240,8 +241,11 @@ function SignInPage() {
 </div>
         </div>
       </form>
+      
       </div>
+      
     </div>
+    
   );
 }
 
