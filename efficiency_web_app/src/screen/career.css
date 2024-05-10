@@ -1,40 +1,68 @@
-/* careers.css */
+/* department.css */
 
-.left-column {
-    flex: 0 0 calc(70% - 40px); /* Adjusted width */
+.mainCarr {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.department-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-row {
+    display: flex;
     justify-content: space-between;
-    padding-bottom: 30px;
+    width: 100%;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 0 0 calc(70% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-left: 10px;
 }
 
 .right-column {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
 
 .corner-top {
     background-color: #ccc;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .department-header {
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 24px;
-    text-align: center; /* Center the department header */
+    text-align: center;
 }
 
 .department-list-container {
     border: 1px solid #0d0d0d;
     padding: 10px;
-    width: 250px;
-    margin-left: 400px;
+    width: 100%;
+    max-width: 250px;
+    margin-top: 20px;
+    border-radius: 10px;
 }
 
 .department-list-header {
     background-color: #ccc;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .department-list {
@@ -46,42 +74,76 @@
     margin-bottom: 10px;
 }
 
-/* department.css */
+.image-wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-photo {
+    height: auto;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.join {
+    margin-top: 20px;
+}
 
 .rtext {
     text-align: right;
     font-weight: bold;
-    margin-right: 70px;
-    color: black; /* Set font color to black */
-    text-decoration: none; /* Remove default underline */
+    color: black;
+    text-decoration: none;
 }
 
 .rtext:hover {
-    text-decoration: underline; /* Add underline on hover */
-    color: #333; /* Change font color on hover */
+    text-decoration: underline;
+    color: #333;
 }
 
 .rtext:focus {
-    outline: none; /* Remove focus outline */
+    outline: none;
 }
 
-.additional-row {
+.details {
     display: flex;
-    justify-content: center; /* Align content horizontally */
-    align-items: center; /* Align content vertically */
-    height: 100px; /* Adjust the height as needed */
-    background-color: #f0f0f0; /* Example background color */
-    margin-top: 20px; /* Adjust margin top as needed */
+    flex-direction: column;
+    align-items: center;
 }
 
-.left-column .image-wrapper {
-    margin-top: 40px; /* Add margin-top to create space between the header and image */
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
+#history.opportunity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin-left: 30px;
+
 }
 
-.left-column .container-photo {
-    height: auto;
-    max-width: 80%; /* Ensure image doesn't overflow */
+.opportunity h4 {
+    margin-bottom: 10px;
+}
+
+.opportunity ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.opportunity li {
+    margin-bottom: 25px;
+}
+
+.opportunity strong {
+    font-weight: bold;
+}
+
+.opportunity p {
+    text-align: center;
 }

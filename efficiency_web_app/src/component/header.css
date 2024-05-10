@@ -64,7 +64,7 @@ header {
   margin-right: 30px;
   position: relative; /* Set position to relative for dropdowns */
   transition: transform 0.3s, font-size 0.3s;
-  margin-top:-10px;
+  margin-top: -10px; /* Adjust as needed */
 }
 
 .nav ul li a {
@@ -72,7 +72,7 @@ header {
   text-decoration: none;
   font-weight: 800;
   display: block; /* Display as block for padding and width */
-  padding: 10px; /* Add padding for better click area */
+  padding: 15px; /* Add padding for better click area */
 }
 
 .nav ul li a:hover {
@@ -94,16 +94,15 @@ header {
   background-color: #f9f9f9;
   min-width: 160px;
   opacity: 0.8;
- 
+
 }
 
+/* Dropdown container visible on hover */
 /* Dropdown container visible on hover */
 .nav ul li:hover > ul {
   display: block;
   opacity: 1;
-  margin-left: 80%;
-  
-  
+  margin-left: 10px; /* Adjust as needed */
 }
 
 
@@ -148,6 +147,37 @@ header {
   background-color: #0056b3;
 }
 
+/* header.css */
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+  z-index: 1000;
+}
+
+.search-suggestions ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-suggestions ul li {
+  padding: 10px;
+}
+
+.search-suggestions ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.search-suggestions ul li a:hover {
+  text-decoration: underline;
+}
+
+
 @media only screen and (max-width: 1450px){
   .nav ul {
     list-style-type: none;
@@ -155,7 +185,28 @@ header {
     margin-left:250px;
     
   }
+  .nav ul li:hover > ul {
+    display: block;
+    opacity: 1;
+    margin-left: 10px; /* Adjust as needed */
+  }
 }
+
+@media only screen and (max-width: 1100px){
+  .nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left:0px;
+    font-size: 14px;
+    
+  }
+  .nav ul li:hover > ul {
+    display: block;
+    opacity: 1;
+    margin-left: 10px; /* Adjust as needed */
+  }
+}
+
 @media only screen and (max-width: 850px){
   .nav ul {
     list-style-type: none;
@@ -163,5 +214,17 @@ header {
     margin-left:10px;
     font-size: 12px;
     
+  }
+  .nav ul li:hover > ul {
+    display: block;
+    opacity: 1;
+    margin-left: 10px; /* Adjust as needed */
+  }
+  .nav ul li {
+    display: inline-block; /* Change display to inline-block */
+    margin-right: 10px;
+    position: relative; /* Set position to relative for dropdowns */
+    transition: transform 0.3s, font-size 0.3s;
+    margin-top: -10px; /* Adjust as needed */
   }
 }
