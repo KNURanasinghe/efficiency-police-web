@@ -154,12 +154,12 @@ header {
 /* Your existing CSS code */
 
 .search-suggestions {
-  position: absolute; /* Position the suggestions box */
-  top: 28%; /* Place it in the middle vertically */
+  position: fixed; /* Position the suggestions box */
+  top: 30%; /* Place it in the middle vertically */
   left: 87%; /* Place it in the middle horizontally */
   transform: translate(-50%, -50%); /* Center the box precisely */
   background-color: #ffffff;
-  border: 1px solid #cccccc;
+  
   width: 300px; /* Adjust width as needed */
   z-index: 1000;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);

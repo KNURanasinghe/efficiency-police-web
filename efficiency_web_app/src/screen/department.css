@@ -1,6 +1,6 @@
 .department-page {
   display: flex;
-  flex-direction: column; /* Ensuring flex items stack vertically */
+  flex-direction: row; /* Ensuring flex items stack vertically */
 }
 
 .first-row {
