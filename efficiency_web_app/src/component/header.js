@@ -49,14 +49,36 @@
 
     const handleSearch = (searchTerm) => {
       setSearchTerm(searchTerm);
-
+    
       if (searchTerm.trim() !== '') {
         const matchedPages = getContent(searchTerm);
         setSuggestions(matchedPages);
+    
+        // Add or remove classes based on the number of suggestions
+        const suggestionBox = document.querySelector('.search-suggestions');
+        if (matchedPages.length === 1) {
+          suggestionBox.classList.add('one-suggestion');
+          suggestionBox.classList.remove('two-suggestions', 'three-suggestions','four-suggestions');
+        } else if (matchedPages.length === 2) {
+          suggestionBox.classList.add('two-suggestions');
+          suggestionBox.classList.remove('one-suggestion', 'three-suggestions','four-suggestions');
+        } else if (matchedPages.length === 3) {
+          suggestionBox.classList.add('three-suggestions');
+          suggestionBox.classList.remove('one-suggestion', 'two-suggestions','four-suggestions');
+        }  else if (matchedPages.length === 4) {
+          suggestionBox.classList.add('four-suggestions');
+          suggestionBox.classList.remove('one-suggestion', 'two-suggestions','three-suggestions');
+        } else {
+          // Handle other cases if needed
+        }
       } else {
         setSuggestions([]);
+        // Reset classes when there are no suggestions
+        const suggestionBox = document.querySelector('.search-suggestions');
+        suggestionBox.classList.remove('one-suggestion', 'two-suggestions', 'three-suggestions','four-suggestions');
       }
     };
+    
 
     const clearSearch = () => {
       setSearchTerm('');
