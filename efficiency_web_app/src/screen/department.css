@@ -1,45 +1,80 @@
 .department-page {
-    display: flex;
-  }
-  
-  .left-column {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .right-column {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .corner-top {
-    background-color: #ccc;
-    padding: 10px;
-  }
-  
-  .department-header {
-    margin-top: 20px;
-    font-size: 24px;
-  }
-  
-  .department-list-container {
-    border: 1px solid #0d0d0d;
-    padding: 10px;
-    width: 250px;
-   margin-left: 400px
-  }
-  
-  .department-list-header {
-    background-color: #ccc;
-    padding: 10px;
-  }
-  
-  .department-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .department-list li {
-    margin-bottom: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column; /* Ensuring flex items stack vertically */
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-column {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-column {
+  flex: 1;
+  padding: 20px;
+}
+
+.corner-top {
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.department-header {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center; /* Aligning department header in the center */
+}
+
+.department-list-container {
+  border: 1px solid #0d0d0d;
+  padding: 10px;
+  width: 250px;
+  border-radius: 10px;
+  margin-top: 20px; /* Adding margin to separate from department header */
+}
+
+.department-list-header {
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center; /* Aligning department list header in the center */
+}
+
+.department-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.department-list li {
+  margin-bottom: 10px;
+}
+
+.mission-section {
+  margin: 20px auto; /* Center the container horizontally and add top and bottom margin */
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%; /* Adjust the width as needed */
+  max-width: 800px; /* Limit the maximum width */
+  text-align: center; /* Center the content inside the container */
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.mission-section h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.mission-section p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.innerdiv h3, p{
+  text-align: start;
+}
+

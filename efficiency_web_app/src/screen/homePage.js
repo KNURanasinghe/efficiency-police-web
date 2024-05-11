@@ -37,6 +37,12 @@ function HomePageContent() {
   const goToEServicePage = () => {
     history.push('/eservice'); // Navigate to '/eservice' path
   };
+  const goToContactPage = () => {
+    history.push('/contact'); 
+  };
+  const goToMediaCenterPage = () => {
+    history.push('/media-center'); 
+  };
 
   return (
     <div className='mcontainer'>
@@ -59,28 +65,28 @@ function HomePageContent() {
       <div className="row">
         {/* Clickable Containers */}
         <div className="clickable-column">
-          <div className="clickable-container small" onClick={() => openUrlInNewTab('URL_1')}>
+          <div className="clickable-container small" onClick={() => openUrlInNewTab('https://www.instagram.com/accounts/login/')}>
             <img
               src={ins}
               alt="URL 1"
               className="container-photo"
             />
           </div>
-          <div className="clickable-container small" onClick={() => openUrlInNewTab('URL_2')}>
+          <div className="clickable-container small" onClick={() => openUrlInNewTab('https://web.facebook.com/login/?_rdc=1&_rdr')}>
             <img
               src={fb}
               alt="URL 2"
               className="container-photo"
             />
           </div>
-          <div className="clickable-container small" onClick={() => openUrlInNewTab('URL_3')}>
+          <div className="clickable-container small" onClick={() => openUrlInNewTab('https://twitter.com/i/flow/login')}>
             <img
               src={x}
               alt="URL 3"
               className="container-photo"
             />
           </div>
-          <div className="clickable-container small" onClick={() => openUrlInNewTab('URL_4')}>
+          <div className="clickable-container small" onClick={() => openUrlInNewTab('https://www.linkedin.com/company/login/')}>
             <img
               src={linkd}
               alt="URL 4"
@@ -98,7 +104,7 @@ function HomePageContent() {
           />
         </div>
         {/* Contact */}
-        <div className="container-item">
+        <div className="container-item" onClick={goToContactPage}>
           <h2>Contact</h2>
           <img
             src={c}
@@ -107,7 +113,7 @@ function HomePageContent() {
           />
         </div>
         {/* Media Center */}
-        <div className="container-item">
+        <div className="container-item" onClick={goToMediaCenterPage}>
           <h2>Media Center</h2>
           <img
             src={m}

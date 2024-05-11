@@ -124,6 +124,7 @@ header {
   margin-top: 10px;
   display: flex;
   align-items: center;
+  margin-right: 70px;
 }
 
 .search-bar input[type="text"] {
@@ -141,6 +142,7 @@ header {
   cursor: pointer;
   margin-bottom: 18px;
   margin-left: 5px;
+  
 }
 
 .search-bar button:hover {
@@ -149,14 +151,19 @@ header {
 
 /* header.css */
 
+/* Your existing CSS code */
+
 .search-suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  width: 100%;
+  position: absolute; /* Position the suggestions box */
+  top: 28%; /* Place it in the middle vertically */
+  left: 87%; /* Place it in the middle horizontally */
+  transform: translate(-50%, -50%); /* Center the box precisely */
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  width: 300px; /* Adjust width as needed */
   z-index: 1000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .search-suggestions ul {
@@ -170,12 +177,16 @@ header {
 
 .search-suggestions ul li a {
   text-decoration: none;
-  color: #333;
+  color: #333333;
+  display: block;
 }
 
 .search-suggestions ul li a:hover {
   text-decoration: underline;
+  color: #000000;
+  background-color: #f5f5f5;
 }
+
 
 
 @media only screen and (max-width: 1450px){
@@ -205,14 +216,26 @@ header {
     opacity: 1;
     margin-left: 10px; /* Adjust as needed */
   }
+  .search-suggestions {
+    position: absolute; /* Position the suggestions box */
+    top: 28%; /* Place it in the middle vertically */
+    left: 78%; /* Place it in the middle horizontally */
+    transform: translate(-50%, -50%); /* Center the box precisely */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    width: 300px; /* Adjust width as needed */
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+  }
 }
 
 @media only screen and (max-width: 850px){
   .nav ul {
     list-style-type: none;
     padding: 0;
-    margin-left:10px;
-    font-size: 12px;
+    
+    font-size: 11px;
     
   }
   .nav ul li:hover > ul {
@@ -226,5 +249,24 @@ header {
     position: relative; /* Set position to relative for dropdowns */
     transition: transform 0.3s, font-size 0.3s;
     margin-top: -10px; /* Adjust as needed */
+    
+  }
+  .search-suggestions {
+    position: absolute; /* Position the suggestions box */
+    top: 28%; /* Place it in the middle vertically */
+    left: 75%; /* Place it in the middle horizontally */
+    transform: translate(-50%, -50%); /* Center the box precisely */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    width: 300px; /* Adjust width as needed */
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+  }
+  .search-bar {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
   }
 }
