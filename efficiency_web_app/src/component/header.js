@@ -9,40 +9,50 @@ function Header() {
   const history = useHistory();
 
   const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'The Department', path: '/department' },
-    { name: 'Careers', path: '/career' },
-    { name: 'Media Center', path: '/media-center' },
-    { name: 'Contact Us', path: '/contact' }
+    { 
+      name: 'Home', 
+      path: '/'
+    },
+    { 
+      name: 'The Department', 
+      path: '/department',
+      keywords: ['police department', 'mission', 'history', 'executive team', 'inspector general']
+    },
+    { 
+      name: 'Careers', 
+      path: '/career',
+      keywords: ['overview', 'career opportunities', 'eligibility', 'hiring']
+    },
+    // Add other pages with their associated keywords
+    { 
+      name: 'Media Center', 
+      path: '/media-center',
+      keywords: ['news', 'events', 'gallery']
+    },
+    { 
+      name: 'Contact Us', 
+      path: '/contact',
+      keywords: ['contact information', 'location', 'email', 'phone']
+    }
   ];
 
   const getContent = (searchTerm) => {
-    switch (searchTerm.toLowerCase()) {
-      case 'about the police department':
-      case 'our mission':
-      case 'our history':
-      case 'executive team':
-      case 'office of inspector general':
-        return '/department';
-      case 'overview':
-      case 'career opportunities':
-      case 'eligibility & hiring in the sri lanka police department':
-        return '/career';
-      default:
-        return '';
-    }
+    const normalizedSearchTerm = searchTerm.toLowerCase();
+    
+    const matchedPages = pages.filter(page =>
+      page.name.toLowerCase().includes(normalizedSearchTerm) ||
+      (page.keywords && page.keywords.some(keyword => keyword.includes(normalizedSearchTerm)))
+    );
+
+    return matchedPages;
   };
 
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm);
 
     if (searchTerm.trim() !== '') {
-      const path = getContent(searchTerm);
-      if (path) {
-        setSuggestions([{ name: searchTerm, path }]);
-      } else {
-        setSuggestions([]);
-      }
+      const matchedPages = getContent(searchTerm);
+      setSuggestions(matchedPages);
     } else {
       setSuggestions([]);
     }
@@ -69,11 +79,21 @@ function Header() {
       <div className="established">Established</div>
       <nav className="nav">
         <ul>
-          {pages.map(page => (
-            <li key={page.path}>
-              <Link to={page.path}>{page.name}</Link>
-            </li>
-          ))}
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/department">The Department</Link>
+          </li>
+          <li>
+            <Link to="/career">Careers</Link>
+          </li>
+          <li>
+            <Link to="/media-center">Media Center</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
         </ul>
         <div className="search-bar">
           <input 
@@ -85,7 +105,7 @@ function Header() {
           {searchTerm && (
             <button className="clear-button" onClick={clearSearch}>X</button>
           )}
-          <button type="button">Search</button>
+          <button type="button" onClick={() => handleSearch(searchTerm)}>Search</button>
         </div>
       </nav>
       <div className="search-suggestions">

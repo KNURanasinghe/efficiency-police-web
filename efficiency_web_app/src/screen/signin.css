@@ -12,7 +12,7 @@
 
 .form-container {
   overflow-y: auto; /* Enable vertical scrolling */
-  height: 380px; /* Set a fixed height for the form */
+   /* Set a fixed height for the form */
   padding-bottom: 15px;
 }
 

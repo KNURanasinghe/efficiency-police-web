@@ -16,6 +16,7 @@ function SignInPage() {
     contactPersonal2: '',
     email: '',
     district: '',
+    division: '',
     fullName: '',
     nameWithInitials: '',
     nic: '',
@@ -31,6 +32,34 @@ function SignInPage() {
     password: '' 
   });
 
+    // Sample division data structure, replace it with actual data
+    const divisionsByDistrict = {
+      "Ampara": ["Addalaichenai", "Akkaraipattu", "Ampara", "Damana", "Dehiattakandiya", "Kalmunai", "Karaitivu", "Lahugala", "Mahaoya", "Nintavur", "Padiyathalawa", "Sammanthurai", "Thirukkovil"],
+      "Anuradhapura": ["Anuradhapura", "Eppawala", "Galnewa", "Galenbindunuwewa", "Horowpathana", "Ipalogama", "Kahatagasdigiliya", "Kebithigollewa", "Kekirawa", "Mahavilachchiya", "Medawachchiya", "Nochchiyagama", "Padaviya", "Palagala", "Rajanganaya", "Rambewa", "Thambuttegama", "Thirappane"],
+      "Badulla": ["Badulla", "Bandarawela", "Diyatalawa", "Ella", "Hali Ela", "Haldummulla", "Haputale", "Kandaketiya", "Lunugala", "Meegahakiula", "Passara", "Rideemaliyadda", "Soranathota", "Welimada"],
+      "Batticaloa": ["Akkaraipattu", "Batticaloa", "Eravur", "Kalawanchikudi", "Kattankudy", "Kiran", "Kokaddichcholai", "Koralai Pattu Central", "Koralai Pattu South", "Koralai Pattu West", "Manmunai North", "Manmunai Pattu", "Manmunai Pattu North", "Manmunai South & Eruvil Pattu", "Paddiruppu", "Porativu Pattu", "Tirukkovil", "Valaichchenai", "Vavunathivu"],
+      "Colombo": ["Colombo Central", "Colombo East", "Colombo North", "Colombo South", "Colombo West", "Dehiwala", "Homagama", "Kaduwela", "Kesbewa", "Kolonnawa", "Maharagama", "Moratuwa", "Padukka", "Ratmalana", "Seethawaka", "Sri Jayawardenepura Kotte"],
+      "Galle": ["Ambalangoda", "Baddegama", "Bentota", "Bope Poddala", "Elpitiya", "Galle", "Habaraduwa", "Hikkaduwa", "Karandeniya", "Nagoda", "Neluwa", "Thawalama", "Yakkalamulla"],
+      "Gampaha": ["Attanagalla", "Biyagama", "Divulapitiya", "Dompe", "Gampaha", "Ja-Ela", "Kelaniya", "Mahara", "Minuwangoda", "Mirigama", "Nittambuwa", "Wattala", "Welimada"],
+      "Hambantota": ["Ambalantota", "Angunakolapelessa", "Beliatta", "Hambantota", "Lunugamwehera", "Suriyawewa", "Tangalle", "Tissamaharama", "Walasmulla", "Weeraketiya"],
+      "Jaffna": ["Chavakachcheri", "Delft", "Island North", "Island South", "Jaffna", "Karainagar", "Kayts", "Kopay", "Nallur", "Point Pedro", "Valikamam East", "Valikamam North", "Valikamam South", "Valikamam West", "Vadamarachchi East", "Vadamarachchi North", "Vadamarachchi South West", "Vadamarachchi West"],
+      "Kalutara": ["Agalawatta", "Bandaragama", "Beruwala", "Bulathsinhala", "Dodangoda", "Horana", "Ingiriya", "Kalutara", "Matugama", "Millaniya", "Palindanuwara", "Panadura", "Walallawita"],
+      "Kandy": ["Akurana", "Delthota", "Dolosbage", "Gampola", "Ganga Ihala Korale", "Harispattuwa", "Kandy Four Gravets & Gangawata Korale", "Kundasale", "Medadumbara", "Minipe", "Panvila", "Pasbage Korale", "Pathadumbara", "Thumpane", "Ududumbara", "Udunuwara", "Yatinuwara"],
+      "Kegalle": ["Aranayake", "Bulathkohupitiya", "Dehiowita", "Deraniyagala", "Galigamuwa", "Kegalle", "Mawanella", "Ruwanwella", "Warakapola", "Yatiyanthota"],
+      "Kilinochchi": ["Kandavalai", "Karachchi", "Kilinochchi", "Pachchilaipalli", "Poonakari"],
+      "Kurunegala": ["Alawwa", "Bingiriya", "Galgamuwa", "Ganewatta", "Giribawa", "Ibbagamuwa", "Kuliyapitiya", "Kurunegala", "Maho", "Mallawapitiya", "Nikaweratiya", "Panduwasnuwara", "Pannala", "Polgahawela", "Rasnayakapura", "Wariyapola", "Wewagedara", "Yapahuwa"],
+      "Mannar": ["Mannar", "Manthai", "Musali", "Nanaddan", "Nanattan", "Pandarikulam"],
+      "Matale": ["Dambulla", "Galewela", "Laggala Pallegama", "Matale", "Naula", "Pallepola", "Rattota", "Sigiriya", "Ukuwela", "Wilgamuwa", "Yatawatta"],
+      "Matara": ["Akuressa", "Deniyaya", "Devinuwara", "Hakmana", "Kamburupitiya", "Matara", "Mulatiyana", "Pasgoda", "Pitabeddara", "Thihagoda", "Weligama"],
+      "Monaragala": ["Badalkumbura", "Bibile", "Buttala", "Kataragama", "Medagama", "Monaragala", "Sevanagala", "Siyambalanduwa", "Thanamalwila"],
+      "Mullaitivu": ["Manthai East", "Maritimepattu", "Oddusuddan", "Puthukudiyiruppu", "Tunukkai", "Vaddakachchi", "Wellankulam"],
+      "Nuwara Eliya": ["Hanguranketha", "Kotmale", "Nuwara Eliya", "Walapane"],
+      "Polonnaruwa": ["Dimbulagala", "Elahera", "Hingurakgoda", "Lankapura", "Medirigiriya", "Polonnaruwa", "Thamankaduwa", "Welikanda"],
+      "Puttalam": ["Anamaduwa", "Chilaw", "Kalpitiya", "Madampe", "Mahakumbukkadawala", "Mahawewa", "Nattandiya", "Wennappuwa"],
+      "Ratnapura": ["Ayagama", "Balangoda", "Eheliyagoda", "Elapatha", "Embilipitiya", "Godakawela", "Imbulpe", "Kiriella", "Kolonne", "Nivithigala", "Opanayake", "Pelmadulla", "Ratnapura", "Weligepola"],
+      "Trincomalee": ["Kantalai", "Kinniya", "Morawewa", "Mutur", "Seruvila", "Thambalagamuwa", "Trincomalee", "Verugal"]
+    };
+    
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -138,6 +167,18 @@ function SignInPage() {
               <option value="Ratnapura">Ratnapura</option>
               <option value="Trincomalee">Trincomalee</option>
             </select>
+            <label htmlFor="division">Division:</label>
+              <select
+                name="division"
+                value={formData.division}
+                onChange={handleChange}
+                disabled={!formData.district} // Disable if no district selected
+              >
+                <option value="">Please select division</option>
+                {formData.district && divisionsByDistrict[formData.district].map((division, index) => (
+                  <option key={index} value={division}>{division}</option>
+                ))}
+              </select>
             <label htmlFor="fullName">Full Name:</label>
             <input
               type="text"
