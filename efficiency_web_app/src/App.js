@@ -1,16 +1,16 @@
 // App.js
 
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './component/header';
 import Footer from './component/footer';
-import HomePage from './screen/homePage';
-import DepartmentPage from './screen/department';
+import Header from './component/header';
 import CareerPage from './screen/career';
-import Eservicres from './screen/eservice';
-import SignUp from './screen/signup';
-import MediaCenter from './screen/mediaCenter/MediaCenter';
 import ContactUs from './screen/contactUs/ContactUs';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import DepartmentPage from './screen/department';
+import Eservicres from './screen/eservice';
+import HomePage from './screen/homePage';
+import MediaCenter from './screen/mediaCenter/MediaCenter';
+import SignUp from './screen/signup';
 
 
 function App() {
