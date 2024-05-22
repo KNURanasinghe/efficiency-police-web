@@ -51,10 +51,7 @@ function DepartmentPage() {
       <div className="mission-section" id='mission'>
         <h3>Our Mission</h3>
         <p>
-          The mission of the Sri Lanka Police Department is to uphold the rule of law, ensure public safety, 
-          and maintain order through effective law enforcement, community engagement, and collaboration with stakeholders. 
-          We are committed to serving with integrity, professionalism, and compassion, striving to build trust and confidence among the people 
-          we serve while upholding the values of justice, equality, and respect for human rights.
+        Sri Lanka Police is committed and confident to uphold and enforce the law of the land, to preserve the public order, prevent crime and Terrorism with prejudice to none – equity to all.
         </p>
       </div>
       <div className="mission-section" id='history'>

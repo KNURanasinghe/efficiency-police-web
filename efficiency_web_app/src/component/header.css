@@ -46,7 +46,7 @@ header {
   align-items: center;
   margin-top: 10px;
   text-align: center; /* Center the navigation links */
-  background-color: grey;
+  background-color: cornflowerblue;
   width: 100%; /* Change row color to grey */
   height: 40px;
 }

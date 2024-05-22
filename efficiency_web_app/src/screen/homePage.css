@@ -1,11 +1,14 @@
 .mcontainer{
   display: flex;
-  
+  background-color: azure;
 }
 .container {
   flex: 1;
- height: 1000px;
-
+  height: 100%;
+  max-height: 1300px;
+  padding: 20px;
+ width: 100%;;
+ max-width: 1300px;
  
 }
 
@@ -18,12 +21,19 @@
 
 .photo {
   width: 80%;
-  height: auto;
+  height: 700px;
+  margin: 10px; /* Adjust the margin as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: black;
+    opacity: 0.975;
 }
 
 .separator {
   width: 100%;
   margin: 20px 0;
+  margin-top: 290px;
   border: 1px solid #ccc;
 }
 
@@ -42,6 +52,12 @@
 .container-item {
   flex: 1;
   text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  max-width: 280px;
+  cursor: pointer;
 }
 
 .container-item h2 {
@@ -51,6 +67,7 @@
 .container-photo {
   width: 80%;
   height: auto;
+  margin-top: 20px;
 }
 .small {
   width: 50px;
@@ -60,5 +77,11 @@
 .small:hover {
   transform: scale(1.1); /* Increase size on hover */
   transition: transform 0.3s ease; /* Add smooth transition */
+}
+.clickable-column{
+  cursor: pointer;
+  height: 320px;
+ 
+ 
 }
 

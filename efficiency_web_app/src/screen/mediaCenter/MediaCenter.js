@@ -7,6 +7,10 @@ import p3 from '../../assets/media/q3.jpg';
 import p4 from '../../assets/media/q4.jpg';
 import p5 from '../../assets/media/q5.jpg';
 import p6 from '../../assets/media/q6.jpg';
+import photo1 from '../../assets/1.jpg';
+import photo2 from '../../assets/2.jpg';
+import photo3 from '../../assets/3.jpg';
+import photo4 from '../../assets/4.jpg';
 
 
 function MediaCenter() {
@@ -36,6 +40,23 @@ function MediaCenter() {
         </div>
         <div className="item">
           <img src={p6} alt='p6'/>
+          
+        </div>
+        
+        <div className="item">
+          <img src={photo4} alt='p6'/>
+          
+        </div>
+        <div className="item">
+          <img src={photo3} alt='p6'/>
+          
+        </div>
+        <div className="item">
+          <img src={photo2} alt='p6'/>
+          
+        </div>
+        <div className="item">
+          <img src={photo1} alt='p6'/>
           
         </div>
       </div>
